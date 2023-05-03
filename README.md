@@ -6,9 +6,9 @@ Problem of The Day
 
 You are given an array of strings arr of size n. You have to find out if it is possible to make a palindromic string by concatenating the strings in any order. Provided that all the strings given in the array are of equal length.
 
-
-class Solution{
-public:
+## SOLUTION ## 
+ class Solution{
+ public:
     bool makePalindrome(int n,vector<string> &arr){
   
    bool makePalindrome(int n, vector<string> &arr){
