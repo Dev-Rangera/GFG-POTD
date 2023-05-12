@@ -1,0 +1,36 @@
+//User function Template for C++
+
+class Solution{
+public:
+    int totalCuts(int n,int k,vector<int> &A){
+        // Code here
+        if(n==1)
+        return 0;
+        if(n==2)
+        {
+            if(A[0]+A[1]>=k)
+            return 1;
+            else
+            return 0;
+        }
+        int prefix[n-1];
+        int suffix[n-1];
+        prefix[0] = A[0];
+        suffix[n-2] = A[n-1];
+        for(int i=1;i<n-1;i++)
+        {
+            prefix[i] = max(prefix[i-1],A[i]);
+        }
+        for(int i=n-3;i>=0;i--){
+            if(A[i+1]<suffix[i+1]) suffix[i] = A[i+1];
+            else suffix[i]=suffix[i+1];
+        }
+        int ans=0;
+        for(int i=0;i<n-1;i++)
+        {
+            if(prefix[i]+suffix[i]>=k)
+            ans++;
+        }
+        return ans;
+    }
+};
