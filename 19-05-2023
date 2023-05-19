@@ -1,0 +1,36 @@
+class Solution{
+    public:
+    vector<int>kthSmallestNum(int n, vector<vector<int>>&range, int q, vector<int>queries){
+        //Write your code here
+        sort(range.begin(),range.end());
+        set<pair<int,int>>s;
+        for(auto &it:range){
+            auto itr=s.upper_bound({it[0],0});
+            if(itr==s.begin()){
+                s.insert({it[0],it[1]});
+                continue;
+            }
+            itr--;
+            if(itr->second>=it[0]){
+                auto x=*itr;
+                s.erase(itr);
+                x.second=max(x.second,it[1]);
+                s.insert(x);
+            }else s.insert({it[0],it[1]});
+        }
+        vector<int>ans;
+        for(int it:queries){
+            int curr=0;
+            for(auto itr:s){
+                if(curr+itr.second-itr.first+1<it)curr+=(itr.second-itr.first+1);
+                else{
+                    ans.push_back(itr.first+(it-curr-1));
+                    curr=it;
+                    break;
+                }
+            }
+            if(curr<it)ans.push_back(-1);
+        }
+        return ans;
+    } 
+};
