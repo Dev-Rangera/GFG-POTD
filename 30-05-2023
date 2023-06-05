@@ -1,0 +1,36 @@
+class Solution {
+public:
+     bool solve(vector<vector<char>>& board,string& word,int p,int i,int j,vector<vector<bool>>& visit)
+    {
+        if(p==word.size())
+        return true;
+        if(i<0 || i>=board.size() || j<0 || j>=board[0].size())
+        return false;
+        if(visit[i][j] || word[p]!=board[i][j])
+        return false;
+        visit[i][j] = true;
+        bool result = solve(board,word,p+1,i-1,j,visit) ||
+                      solve(board,word,p+1,i+1,j,visit) ||
+                      solve(board,word,p+1,i,j-1,visit) ||
+                      solve(board,word,p+1,i,j+1,visit);
+        return result;              
+    }
+    bool isWordExist(vector<vector<char>>& board, string word) {
+        // Code here
+        int n = board.size();
+        int m = board[0].size();
+        vector<vector<bool>> visit(n,vector<bool>(m,false));
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
+            {
+                if(board[i][j]==word[0])
+                {
+                    if(solve(board,word,0,i,j,visit))
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+};
