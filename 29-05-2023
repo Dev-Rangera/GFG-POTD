@@ -1,0 +1,28 @@
+class Solution {
+  public:
+    vector<string> CamelCase(int N, vector<string> d, string Pattern) {
+        // code here
+        vector<string> ans;
+        int m=Pattern.length();
+        for(int i=0;i<d.size();i++)
+        {
+            int j=0;
+             for(int k=0;k<d[i].size();k++){
+                if(d[i][k]>='A'&&d[i][k]<='Z'){
+                    if(Pattern[j]==d[i][k]){
+                        if(j==m-1){
+                            ans.push_back(d[i]);
+                            break;
+                        }
+                        j++;
+                    }
+                    else break;
+                }
+            }
+        }
+        if(ans.size()==0){
+            ans.push_back("-1");
+        }
+        return ans;
+    }
+};
