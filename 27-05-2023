@@ -1,0 +1,46 @@
+
+
+//User function Template for Java
+class Solution
+{
+    public static Node reverseList(Node head)
+    {
+        Node prev = null;
+        Node temp = null;
+        Node curr = head;
+        while(curr!=null)
+        {
+            temp = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = temp;
+        }
+        return prev;
+    }
+    public static Node modifyTheList(Node head)
+    {
+        Node slow = head;
+        Node fast = head;
+        while(fast!=null && fast.next!=null)
+        {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        Node middle = reverseList(slow);
+        slow.next = null;
+        Node curr = middle;
+        Node trav = head;
+        Node prev = null;
+        while(curr!=null && trav!=slow)
+        {
+            int temp = trav.data;
+            trav.data = curr.data - trav.data;
+            curr.data = temp;
+            prev = trav;
+            curr = curr.next;
+            trav = trav.next;
+        }
+        prev.next = reverseList(middle);
+        return head;
+    }
+}
