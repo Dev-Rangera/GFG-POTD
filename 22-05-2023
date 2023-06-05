@@ -1,0 +1,21 @@
+//User function Template for C++
+
+class Solution {
+    public:
+    int solve(int N, vector<int> p){
+        // code here
+         vector<int> conn(N,0);
+        for(int i=1;i<N;i++)
+        {
+            conn[i]++;
+            conn[p[i]]++;
+        }
+        int cnt = 0;
+        for(int i=0;i<N;i++)
+        {
+            if(conn[i]==1)
+            cnt++;
+        }
+        return max(N-cnt-1,0);
+    }
+};
