@@ -1,0 +1,25 @@
+
+class Solution {
+  public:
+    int distributeTicket(int N, int K) {
+        // code here
+          if(N%K==0){
+            int x=N/K;
+            if(x%2==0){
+                return N-((x/2)*K)+1;
+            }
+            else{
+                return ((x/2)+1)*K;
+            }
+        }
+        else{
+            int x=N/K;
+            if(x%2==0){
+                return (x/2)*K+N%K;
+            }
+            else{
+                return ((x+1)/2)*K+1;
+            }
+        }
+    }
+};
