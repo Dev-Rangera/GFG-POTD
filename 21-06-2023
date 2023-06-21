@@ -1,0 +1,9 @@
+class Solution {
+  public:
+    int sumOfNaturals(int n) {
+        // code here
+        int mod = 1000000007;
+        int x = (n%mod*1LL*((n+1)%mod)/2)%mod;
+        return x;
+    }
+};
