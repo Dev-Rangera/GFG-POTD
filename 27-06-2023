@@ -1,0 +1,45 @@
+/*
+// structure of the node is as follows
+
+struct Node
+{
+	int data;
+	struct Node* next;
+	
+	Node(int x){
+	    data = x;
+	    next = NULL;
+	}
+	
+};
+
+*/
+class Solution
+{
+    public:
+    struct Node* makeUnion(struct Node* head1, struct Node* head2)
+    {
+        // code here
+        map<int,Node*>mp;
+        Node* curr = head1;
+        while(curr)
+        {
+            mp[curr->data] = curr;
+            curr = curr->next;
+        }
+        curr = head2;
+        while(curr)
+        {
+            mp[curr->data] = curr;
+            curr = curr->next;
+        }
+        Node * ans = new Node(0),*res = ans;
+        for(auto it : mp)
+        {
+            ans->next = it.second;
+            ans = ans->next;
+        }
+        ans->next = NULL;
+        return res->next;
+    }
+};
