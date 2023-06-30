@@ -1,0 +1,25 @@
+//User function template for C++
+class Solution{
+public:	
+		
+	int isDivisible(string s){
+	    //complete the function here
+	    int odd  = 0;
+	    int even = 0;
+	    for(int i = 0;i<s.length();i++)
+	    {
+	        int bit = s[i] - '0';
+	        if(i%2 == 0)
+	        {
+	            even+=bit;
+	        }
+	        else
+	        {
+	            odd+=bit;
+	        }
+	    }
+	    int diff = abs(odd-even);
+	    return diff%3 == 0?1:0;
+	}
+
+};
