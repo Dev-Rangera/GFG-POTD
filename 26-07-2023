@@ -1,0 +1,49 @@
+
+
+//User function Template for C++
+/*
+Structure of the node of the binary tree is as
+struct Node
+{
+	int data;
+	struct Node *left, *right;
+};
+*/
+// your task is to complete this function
+int kthAncestor(Node *root, int k, int node)
+{
+    // Code here
+    unordered_map<Node*,Node*> um;
+    queue<Node*> q;
+    q.push(root);
+    Node* flag = NULL;
+    while(!q.empty())
+    {
+        int n = q.size();
+        while(n--)
+        {
+            Node* a = q.front();
+            q.pop();
+            if(a->data == node)
+            {flag = a; break;}
+            if(a->left)
+            {
+                um[a->left] = a;
+                q.push(a->left);
+            }
+            if(a->right)
+            {
+                um[a->right] = a;
+                q.push(a->right);
+            }
+        }
+    }
+    while(k--)
+    {
+        if(um.find(flag)!=um.end())
+        flag = um[flag];
+        else
+        return -1;
+    }
+    return flag->data;
+}
