@@ -1,0 +1,24 @@
+
+class Solution {
+  public:
+    // Function to return a list containing the DFS traversal of the graph.
+    void dfs(int i,vector<int> adj[],vector<int>& ans,unordered_set<int>& s)
+    {
+        s.insert(i);
+        ans.push_back(i);
+        for(auto x : adj[i])
+        {
+            if(s.find(x)==s.end())
+            {
+               dfs(x,adj,ans,s);
+            }
+        }
+    }
+    vector<int> dfsOfGraph(int V, vector<int> adj[]) {
+        // Code here
+        vector<int> ans;
+        unordered_set<int> s;
+        dfs(0,adj,ans,s);
+        return ans;
+    }
+};
