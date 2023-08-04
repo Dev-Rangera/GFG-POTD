@@ -1,0 +1,14 @@
+//User function Template for C++
+
+class Solution{
+public:
+    void Reverse(stack<int> &St){
+        stack<int>st;
+        while(!St.empty())
+        {
+            st.push(St.top());
+            St.pop();
+        }
+        St = st;
+    }
+};
