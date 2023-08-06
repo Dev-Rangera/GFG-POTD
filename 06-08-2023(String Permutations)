@@ -1,0 +1,28 @@
+class Solution{
+    public:
+    //Complete this function
+    vector<string>ans;
+    void solver(string &s, int index, int &n)
+    {
+        if(index >=n) 
+        {
+            ans.push_back(s);
+            return ;
+        }
+        for(int i = index;i<n;i++)
+        {
+            swap(s[index],s[i]);
+            solver(s,index+1,n);
+            swap(s[index],s[i]);
+        }
+    }
+    vector<string> permutation(string S)
+    {
+        //Your code here
+        int n = S.size();
+        int index = 0;
+        solver(S,index,n);
+        sort(ans.begin(),ans.end());
+        return ans;
+    }
+};
