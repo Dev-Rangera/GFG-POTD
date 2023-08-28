@@ -1,0 +1,48 @@
+
+
+/*
+struct Node {
+  int data;
+  struct Node *next;
+  Node(int x) {
+    data = x;
+    next = NULL;
+  }
+};*/
+
+//Function to remove duplicates from sorted linked list.
+
+
+/*
+struct Node {
+  int data;
+  struct Node *next;
+  Node(int x) {
+    data = x;
+    next = NULL;
+  }
+};*/
+
+//Function to remove duplicates from sorted linked list.
+Node *removeDuplicates(Node *head)
+{
+ // your code goes here
+  Node *temp = head;
+  while(temp->next!=NULL)
+  {
+      if(temp->data == temp->next->data)
+      {
+          Node *flag = temp;
+          while(temp->next!=NULL && temp->data == temp->next->data)
+          {
+              temp = temp->next;
+          }
+          flag->next = temp->next;
+      }
+      else
+      {
+          temp = temp->next;
+      }
+  }
+  return head;
+}
