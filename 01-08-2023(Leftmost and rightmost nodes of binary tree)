@@ -1,0 +1,38 @@
+
+
+/* Function to print corner node at each level */
+
+/*
+Structure of a node is as following
+struct Node
+{
+     int data;
+     struct Node* left;
+     struct Node* right;
+};
+*/
+void printCorner(Node *root)
+{
+
+// Your code goes here
+queue<Node*> q;
+q.push(root);
+while(!q.empty())
+{
+    int n = q.size();
+    int i=0;
+    while(i<n)
+    {
+        auto x = q.front();
+        q.pop();
+        if(i==0 || i==n-1)
+        cout<<x->data<<" ";
+        if(x->left)
+        q.push(x->left);
+        if(x->right)
+        q.push(x->right);
+        i++;
+    }
+}
+
+}
