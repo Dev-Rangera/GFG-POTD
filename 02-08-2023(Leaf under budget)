@@ -1,0 +1,44 @@
+/*
+struct Node
+{
+    int data;
+    struct Node *left;
+    struct Node *right;
+
+    Node(int x)
+    {
+        data = x;
+        left = NULL;
+        right = NULL;
+    }
+};
+*/
+class Solution
+{
+public:
+    int getCount(Node *root, int k)
+    {
+        queue<pair<Node*, int>>q;
+        q.push({root, 1});
+        int ans=0;
+        while(!q.empty()){
+            Node* curr=NULL;
+            int level=0;
+            
+            tie(curr, level)=q.front();
+            q.pop();
+            
+            if(curr->left) q.push({curr->left, level+1});
+            if(curr->right) q.push({curr->right, level+1});
+            
+            if(!curr->left and !curr->right){
+                if(k>=level ) {
+                    k-=level;
+                    ans++;
+                }
+            }
+        }
+        
+        return ans;
+    }
+};
