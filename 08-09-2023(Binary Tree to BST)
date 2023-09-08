@@ -1,0 +1,55 @@
+//User function template for C++
+
+/* The Node structure is
+struct Node
+{
+    int data;
+    struct Node *left;
+    struct Node *right;
+
+    Node(int val) {
+        data = val;
+        left = right = NULL;
+    }
+}; 
+*/
+
+class Solution{
+  public:
+    // The given root is the root of the Binary Tree
+    // Return the root of the generated BST
+    void storeInorder(Node* node, vector<int>& arr) {
+        if (node == NULL)
+            return;
+            
+        
+        storeInorder(node->left, arr);
+        arr.push_back(node->data);
+        storeInorder(node->right, arr);
+    }
+    
+    // Helper function to copy values from a sorted array to the tree
+    int index = 0;
+    void arrayToBST(Node* node, vector<int>& arr) {
+        if (node == NULL)
+            return;
+        
+        arrayToBST(node->left, arr);
+        node->data = arr[index++];
+        arrayToBST(node->right, arr);
+    }
+    
+    Node *binaryTreeToBST (Node *root)
+    {
+        //Your code goes here
+        if (!root) return NULL;
+    
+        vector<int> arr;
+        storeInorder(root, arr);    // This will store the values in Inorder
+        sort(arr.begin(), arr.end());  // Sorting the values
+        index = 0;
+        arrayToBST(root, arr);      // Put values from sorted array back into tree
+        
+        return root;
+    }
+};
