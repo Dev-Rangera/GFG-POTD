@@ -1,0 +1,25 @@
+class Solution
+{
+    public:
+    priority_queue<int,vector<int>,greater<int>> pq;
+    void ok(Node *root,int k)
+    {
+        if(root==NULL)
+        {
+            return ;
+        }
+        ok(root->left,k);
+        pq.push(root->data);
+        if(pq.size()>k)
+        {
+            pq.pop();
+        }
+        ok(root->right,k);
+    }
+    int kthLargest(Node *root, int k)
+    {
+        //Your code here
+        ok(root,k);
+        return pq.top();
+    }
+};
