@@ -1,0 +1,28 @@
+class Solution
+{
+    public:
+    void inorder(Node *node,Node *res){
+            if(!node) return;
+            
+            if(node->data == res->data) return;
+            else if(node->data < res->data){
+                if(node->right==NULL) node->right = res;
+                else inorder(node->right,res);
+            }
+            else{
+                if(node->data > res->data){
+                    if(node->left == NULL) node->left = res;
+                    else inorder(node->left,res);
+                }
+            }
+            
+        }
+        Node* insert(Node* node, int data) {
+        
+            Node *res = new Node(data);
+            if(!node) return res;
+            
+            inorder(node,res);
+            return node;
+        }
+};
