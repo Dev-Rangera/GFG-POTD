@@ -1,0 +1,21 @@
+class Solution {
+  public:
+    int isPerfectNumber(long long N) {
+        // code here
+        long long int sum=0;
+        for(long long int i=1;i<=sqrt(N);i++)
+        {
+            if(N%i==0)
+            {
+                if(i!=N)
+                sum+=i;
+                long long x = N/i;
+                if(x!=N)
+                sum+=x;
+            }
+        }
+        if(sum==N)
+        return 1;
+        return 0;
+    }
+};
