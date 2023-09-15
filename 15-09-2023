@@ -1,0 +1,28 @@
+class Solution{
+public:
+    int solve(int index,int s,int sum,int n,int arr[],vector<vector<int>>& dp)
+    {
+         if(index>=n)
+         {
+             if(s==sum-s)
+             return 1;
+             return 0;}
+         if(s==sum-s)
+         return 1;
+         if(dp[index][s]!=-1)
+         return dp[index][s];
+         return dp[index][s] = solve(index+1,s+arr[index],sum,n,arr,dp) || 
+                                 solve(index+1,s,sum,n,arr,dp); 
+    }
+    int equalPartition(int N, int arr[])
+    {
+        // code here
+        int sum=0;
+        for(int i=0;i<N;i++)
+        sum+=arr[i];
+        if(sum%2!=0)
+        return 0;
+        vector<vector<int>> dp(N,vector<int>(sum,-1)); 
+        return solve(0,0,sum,N,arr,dp);
+    }
+};
