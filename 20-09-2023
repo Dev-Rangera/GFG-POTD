@@ -1,0 +1,29 @@
+class Solution
+{
+  public:
+        vector <int> rotate (int n, int d)
+        {
+            //code here.
+            int p = d%16;
+            int a = n;
+            while(p--)
+            {
+                if((a&1000000000000000)==32768)
+                a = (a-pow(2,15))*2+1;
+                else
+                a*=2;
+            }
+            vector<int> ans;
+            ans.push_back(a);
+            p = d%16;
+            while(p--)
+            {
+                if((n&1)==1)
+                n = n/2+pow(2,15);
+                else
+                n = n/2;
+            }
+            ans.push_back(n);
+            return ans;
+        }
+};
