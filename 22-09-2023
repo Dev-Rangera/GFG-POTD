@@ -1,0 +1,38 @@
+class Solution
+{
+    public:
+    int lastoccur(int arr[],int low, int high,int x,int &last)
+    {
+        if(high<low)
+        return last;
+        int mid = low+(high-low)/2;
+        if(arr[mid]==x){ 
+            last = mid;
+        lastoccur(arr,mid+1,high,x,last);}
+        else if(arr[mid]<x)
+        lastoccur(arr,mid+1,high,x,last);
+        else
+        lastoccur(arr,low,mid-1,x,last);
+    }
+    int firstoccur(int arr[], int low,int high,int x,int &first)
+    {
+        if(high<low)
+        return first;
+        int mid = low+(high-low)/2;
+        if(arr[mid]==x){
+            first = mid;
+        firstoccur(arr,low,mid-1,x,first);}
+        else if(arr[mid]>x)
+        firstoccur(arr,low,mid-1,x,first);
+        else
+        firstoccur(arr,mid+1,high,x,first);
+    }
+    vector<int> find(int arr[], int n , int x )
+    {
+        // code here
+        int first=-1,last=-1;
+        firstoccur(arr,0,n-1,x,first);
+        lastoccur(arr,0,n-1,x,last);
+        return {first,last};
+    }
+};
