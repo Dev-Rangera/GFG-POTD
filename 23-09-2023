@@ -1,0 +1,69 @@
+class Solution{
+    public:
+    // Function to find equilibrium point in the array.
+    // a: input array
+    // n: size of array
+    int equilibriumPoint(long long arr[], int n) {
+    
+        // Your code here
+        // int l = arr[0];
+        // int m = arr[n-1];
+        // for(int i = 0; i<n; i++)
+        // {
+        //     for(int j = n-2; j>=0; j--)
+        //     {
+        //         if(l + arr[i] == m + arr[j])
+        //         {
+        //             return i;
+        //         }
+        //         else 
+        //         {
+        //             l++;
+        //             m++;
+        //             break;
+        //         }
+        //     }
+        // }
+        // return 0;
+        // if(n==1)return 1;
+        
+        // int sum = 0; 
+        // for(int i = 0; i<n; i++)
+        // {
+        //     sum+= arr[i];
+        // }
+        // int currSum1 = 0; 
+        // int i = 0;
+        // for(; i<n; i++)
+        // {
+        //     if(currSum1+arr[i] <=sum/2)
+        //     {
+        //         currSum1 += arr[i];
+        //     }
+        //     else break;
+        // }
+        // int currSum2 = 0;
+        // for(int j = i+1; j<n; j++)
+        // {
+        //     currSum2 +=arr[j];
+        // }
+        // return currSum1 == currSum2 ? i+1 : -1;
+        int pos = -1,rightSum = 0,leftSum = 0;
+        for(int i = 0; i<n; i++)
+        {
+            rightSum += arr[i];
+        }
+        for(int i=0; i<n; i++)
+        {
+            rightSum -=arr[i];
+            if(leftSum == rightSum)
+            {
+                pos = i+1;
+                break;
+            }
+            leftSum += arr[i];
+        }
+        return pos;
+    }
+
+};
