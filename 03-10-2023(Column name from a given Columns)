@@ -1,0 +1,23 @@
+class Solution{
+    public:
+    string colName (long long int n)
+    {
+        // your code here
+        string ans = "";
+        long long int r ; 
+        while(n)
+        {
+            r = n%26;
+            n = n/26;
+            
+            if(r == 0)
+            {
+                r = 26;
+                n--;
+            }
+            ans.push_back('A' + r-1);
+        }
+        reverse(ans.begin(),ans.end());
+        return ans;
+    }
+};
